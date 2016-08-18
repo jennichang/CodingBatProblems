@@ -137,31 +137,77 @@ public class Main {
     doubleChar("Hi-There") → "HHii--TThheerree"
      */
 
-    public static String doubleChar(String word) {
-        String newWord = "";
+//    public static String doubleChar(String word) {
+//        String newWord = "";
+//
+//        for (int i = 0; i < word.length(); i++) {
+//            char letter = word.charAt(i);
+//            newWord = newWord + letter + letter;
+//        }
+//        return newWord;
+//    }
 
-        for (int i = 0; i < word.length(); i++) {
-            char letter = word.charAt(i);
-            newWord += ""+letter+letter; // the ""+ makes this into a string, otherwise you will just get numbers,
-            // had to look this up
-        }
-        return newWord;
-    }
+
+    /* (7) String-2 : countHi
 
 
-    /* (7) String-2 : oneTwo
+    Return the number of times that the string "hi" appears anywhere in the given string.
 
-    Given a string, compute a new string by moving the first char to come after the next two
-    chars, so "abc" yields "bca". Repeat this process for each subsequent group of 3 chars,
-    so "abcdef" yields "bcaefd". Ignore any group of fewer than 3 chars at the end.
+    countHi("abc hi ho") → 1
+    countHi("ABChi hi") → 2
+    countHi("hihi") → 2
+     */
+//
+//    public static int countHi(String input) {
+//        int counts = 0;
+//
+//        for (int i = 0; i < input.length()-1; i++) { //-1 because if i didn't, it would be out of bounds,
+//            // b/c comparing next index
+//            if (input.substring(i, i + 2).equalsIgnoreCase("hi")) { // 2 because its exclusive of ending index
+//                counts++;
+//            }
+//        }
+//        return counts;
+//
+//    }
 
-    oneTwo("abc") → "bca"
-    oneTwo("tca") → "cat"
-    oneTwo("tcagdo") → "catdog"
+
+    /* (8) String-2: bobThere
+    Return true if the given string contains a "bob" string, but where the middle 'o' char can be any char.
+
+    bobThere("abcbob") → true
+    bobThere("b9b") → true
+    bobThere("bac") → false
      */
 
-    public static String oneTwo(String word) {
-        
+//    public static boolean bobThere(String input) {
+//
+//        for (int i = 0; i < input.length() - 2; i++) {
+//            if (input.charAt(i) == 'b' && input.charAt(i + 2) == 'b') // single quotes for char, double quotes for strings
+//                return true;
+//        }
+//        return false;
+//    }
+
+    /* (9) String-2 repeatEnd
+
+    Given a string and an int n, return a string made of n repetitions of the last n characters of the string.
+    You may assume that n is between 0 and the length of the string, inclusive.
+
+    repeatEnd("Hello", 3) → "llollollo"
+    repeatEnd("Hello", 2) → "lolo"
+    repeatEnd("Hello", 1) → "o"
+
+     */
+
+    public static String repeatEnd(String word, int number) {
+        String newString = "";
+
+        for(int i = 0; i < word.length(); i++) {
+            if
+        }
+
+
     }
 
 
@@ -178,7 +224,11 @@ public class Main {
 
         //System.out.println(roundSum(6, 4, 4));
 
-        System.out.println(doubleChar("Hi-There"));
+        //System.out.println(doubleChar("Hi-There"));
+
+        //System.out.println(countHi("ABChi hi"));
+
+        //System.out.println(bobThere("abcbob"));
 
 
     }
