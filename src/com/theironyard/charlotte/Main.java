@@ -201,14 +201,17 @@ public class Main {
      */
 
     public static String repeatEnd(String word, int number) {
-        String newString = "";
+        int repeat = 0;
+        String newRepeatString = "";
 
-        for(int i = 0; i < word.length(); i++) {
-            if
-        }
+        String newString = word.substring(word.length() - number, word.length());
 
-
+        while (repeat < number) {
+            newRepeatString = newRepeatString + newString;
+            repeat++;
+        } return newRepeatString;
     }
+
 
 
 
@@ -229,6 +232,8 @@ public class Main {
         //System.out.println(countHi("ABChi hi"));
 
         //System.out.println(bobThere("abcbob"));
+
+        System.out.println(repeatEnd("Hello", 2));
 
 
     }
