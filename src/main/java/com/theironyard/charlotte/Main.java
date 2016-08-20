@@ -1,5 +1,8 @@
 package com.theironyard.charlotte;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
 
     /* (1) Logic 2: blackjack
@@ -10,7 +13,7 @@ public class Main {
     blackjack(21, 19) → 21
     blackjack(19, 22) → 19
      */
-
+//
 //    public static int blackJack(int firstNumber, int secondNumber) {
 //        int num1 = 21 - Math.abs(firstNumber);
 //        int num2 = 21 - Math.abs(secondNumber);
@@ -115,13 +118,13 @@ public class Main {
     roundSum(12, 13, 14) → 30
     roundSum(6, 4, 4) → 10
      */
-
+//
 //    public static int round10(int num) {
-//        double step1 = (double) num;
-//        double step2 = (step1 / 10);
-//        double step3 = Math.round(step2);
-//        int step4 = (int) (step3 * 10);
-//        return step4;
+//        double numDouble = (double) num;
+//        double divideTen = (numDouble / 10);
+//        double roundTend = Math.round(timesTen);
+//        int backToInt = (int) (roundTend * 10);
+//        return backToInt;
 //    }
 //
 //    public static int roundSum(int a, int b, int c) {
@@ -147,8 +150,147 @@ public class Main {
 //        return newWord;
 //    }
 
+        /*(7) String-2: countCode
 
-    /* (7) String-2 : countHi
+    Return the number of times that the string "code" appears anywhere in the given string,
+    except we'll accept any letter for the 'd', so "cope" and "cooe" count.
+
+    countCode("aaacodebbb") → 1
+    countCode("codexxcode") → 2
+    countCode("cozexxcope") → 2
+
+     */
+//
+//    public static int countCode (String input) {
+//
+//        int count = 0;
+//
+//        for(int i = 0; i < input.length() - 3; i++) {
+//            if(input.substring(i, i+4).equalsIgnoreCase("code")) {
+//                count++;
+//            }
+//        } return count;
+//    }
+
+
+    /* (8) String-2: bobThere
+    Return true if the given string contains a "bob" string, but where the middle 'o' char can be any char.
+
+    bobThere("abcbob") → true
+    bobThere("b9b") → true
+    bobThere("bac") → false
+     */
+//
+//    public static boolean bobThere(String input) {
+//
+//        for (int i = 0; i < input.length() - 2; i++) {
+//            if (input.charAt(i) == 'b' && input.charAt(i + 2) == 'b') // single quotes for char, double quotes for strings
+//                return true;
+//        }
+//        return false;
+//    }
+
+        /* (9) String-2 repeatEnd
+
+    Given a string and an int n, return a string made of n repetitions of the last n characters of the string.
+    You may assume that n is between 0 and the length of the string, inclusive.
+
+    repeatEnd("Hello", 3) → "llollollo"
+    repeatEnd("Hello", 2) → "lolo"
+    repeatEnd("Hello", 1) → "o"
+
+     */
+
+//    public static String repeatEnd(String word, int number) {
+//        int repeat = 0;
+//        String newRepeatString = "";
+//
+//        String newString = word.substring(word.length() - number, word.length());
+//
+//        while (repeat < number) {
+//            newRepeatString = newRepeatString + newString;
+//            repeat++;
+//        } return newRepeatString;
+//    }
+
+    /* (10) String-2: prefixAgain
+
+    Given a string, consider the prefix string made of the first N chars of the string.
+    Does that prefix string appear somewhere else in the string? Assume that the string is not empty
+    and that N is in the range 1..str.length().
+
+    prefixAgain("abXYabc", 1) → true
+    prefixAgain("abXYabc", 2) → true
+    prefixAgain("abXYabc", 3) → false
+
+     */ //"abXYabX", 3
+
+//    public static boolean prefixAgain(String word, int characters) {
+//
+//        String prefixString = word.substring(0,characters);
+//
+//        for (int i = characters; i <= word.length() - characters; i++) {
+//            if (word.substring(i, i + characters).equals(prefixString)) {
+//                return true;
+//            }
+//        }
+//        return false;
+//
+//    }
+
+    /*(11) String-2: sameStarChar
+
+    Returns true if for every '*' (star) in the string, if there are chars both immediately
+    before and after the star, they are the same.
+
+    sameStarChar("xy*yzz") → true
+    sameStarChar("xy*zzz") → false
+    sameStarChar("*xa*az") → true
+
+     */
+
+//    public static boolean sameStarChar(String input) {
+//        List<Integer> starIndex = new ArrayList<>();
+//
+//        for (int i = 0; i < input.length(); i++) {
+//            if (input.charAt(i) == '*')
+//                starIndex.add(i);
+//        }
+//
+//       for(int s : starIndex) {
+//           if(input.charAt(s-1) == input.charAt(s+1)) {
+//                return true;
+//            }
+//        } return false;
+//    }
+
+    /* (14) String-2: starOut
+
+    Return a version of the given string, where for every star (*) in the string the star and
+    the chars immediately to its left and right are gone. So "ab*cd" yields "ad" and "ab**cd" also yields "ad".
+
+    starOut("ab*cd") → "ad"
+    starOut("ab**cd") → "ad"
+    starOut("sm*eilly") → "silly"
+
+     */
+
+    public static String starOut(String input) {
+
+        char[] charArray = input.toCharArray();
+
+        String newString = "";
+
+        for(int i = 0; i < input.length(); i++) {
+            if(charArray[i] != '*' && charArray[i-1] != '*' && charArray[i+1] != '*') {
+                newString = newString + charArray[i];
+            }
+        } return newString;
+    }
+
+
+
+    /* (13) String-2 : countHi
 
 
     Return the number of times that the string "hi" appears anywhere in the given string.
@@ -172,45 +314,10 @@ public class Main {
 //    }
 
 
-    /* (8) String-2: bobThere
-    Return true if the given string contains a "bob" string, but where the middle 'o' char can be any char.
 
-    bobThere("abcbob") → true
-    bobThere("b9b") → true
-    bobThere("bac") → false
-     */
 
-//    public static boolean bobThere(String input) {
-//
-//        for (int i = 0; i < input.length() - 2; i++) {
-//            if (input.charAt(i) == 'b' && input.charAt(i + 2) == 'b') // single quotes for char, double quotes for strings
-//                return true;
-//        }
-//        return false;
-//    }
 
-    /* (9) String-2 repeatEnd
 
-    Given a string and an int n, return a string made of n repetitions of the last n characters of the string.
-    You may assume that n is between 0 and the length of the string, inclusive.
-
-    repeatEnd("Hello", 3) → "llollollo"
-    repeatEnd("Hello", 2) → "lolo"
-    repeatEnd("Hello", 1) → "o"
-
-     */
-
-    public static String repeatEnd(String word, int number) {
-        int repeat = 0;
-        String newRepeatString = "";
-
-        String newString = word.substring(word.length() - number, word.length());
-
-        while (repeat < number) {
-            newRepeatString = newRepeatString + newString;
-            repeat++;
-        } return newRepeatString;
-    }
 
 
 
@@ -233,7 +340,17 @@ public class Main {
 
         //System.out.println(bobThere("abcbob"));
 
-        System.out.println(repeatEnd("Hello", 2));
+        //System.out.println(repeatEnd("Hello", 2));
+
+        //System.out.println(sameStarChar("aa*byy*zz"));
+
+        //System.out.println(countCode("codexxcodecodejjjcode"));
+
+        //System.out.println(prefixAgain("abXYab", 3));
+
+        System.out.println(starOut("ab*cd"));
+
+
 
 
     }
