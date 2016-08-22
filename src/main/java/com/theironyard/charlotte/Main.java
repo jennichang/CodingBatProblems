@@ -166,7 +166,7 @@ public class Main {
         }
     }
 
-    /* (6) Logic 2: roundSum
+    /* (7) Logic 2: roundSum
 
     For this problem, we'll round an int value up to the next multiple of 10 if its rightmost digit is 5 or more,
     so 15 rounds up to 20. Alternately, round down to the previous multiple of 10 if its rightmost digit is
@@ -192,7 +192,7 @@ public class Main {
         return sum;
     }
 
-    /* (7) String 2: doubleChar
+    /* (8) String 2: doubleChar
     Given a string, return a string where for every char in the original, there are two chars.
 
     doubleChar("The") → "TThhee"
@@ -210,7 +210,7 @@ public class Main {
         return newWord;
     }
 
-        /*(8) String-2: countCode
+        /*(9) String-2: countCode
 
     Return the number of times that the string "code" appears anywhere in the given string,
     except we'll accept any letter for the 'd', so "cope" and "cooe" count.
@@ -223,17 +223,18 @@ public class Main {
 
     public static int countCode (String input) {
 
-        int count = 0;
+        int count = 0; // count starts at 0
 
         for(int i = 0; i < input.length() - 3; i++) {
-            if(input.substring(i, i+4).equalsIgnoreCase("code")) {
+            // for every character, up until length - 3, to stop the exception error (code is characters)
+            if(input.substring(i, i+2).equalsIgnoreCase("co") && input.charAt(i+3) == 'e') { // first part needs to equal co, last letter needs to be e
                 count++;
             }
         } return count;
     }
 
 
-    /* (9) String-2: bobThere
+    /* (10) String-2: bobThere
     Return true if the given string contains a "bob" string, but where the middle 'o' char can be any char.
 
     bobThere("abcbob") → true
@@ -243,14 +244,14 @@ public class Main {
 
     public static boolean bobThere(String input) {
 
-        for (int i = 0; i < input.length() - 2; i++) {
+        for (int i = 0; i <= input.length() - 3; i++) { //for every character, up until length - 2 b/c bob is 3 characters
             if (input.charAt(i) == 'b' && input.charAt(i + 2) == 'b') // single quotes for char, double quotes for strings
                 return true;
         }
         return false;
     }
 
-        /* (10) String-2 repeatEnd
+        /* (11) String-2 repeatEnd
 
     Given a string and an int n, return a string made of n repetitions of the last n characters of the string.
     You may assume that n is between 0 and the length of the string, inclusive.
@@ -263,17 +264,18 @@ public class Main {
 
     public static String repeatEnd(String word, int number) {
         int repeat = 0;
-        String newRepeatString = "";
+        String newRepeatString = ""; // start with blank slate
 
-        String newString = word.substring(word.length() - number, word.length());
+        String newString = word.substring(word.length() - number, word.length()); // the new string is
+        // the last letter minus the input number, until the end of the word
 
-        while (repeat < number) {
-            newRepeatString = newRepeatString + newString;
+        while (repeat < number) { // while repeat is less than the input
+            newRepeatString = newRepeatString + newString; // our blank slate is the new string
             repeat++;
         } return newRepeatString;
     }
 
-    /* (11) String-2: prefixAgain
+    /* (12) String-2: prefixAgain
 
     Given a string, consider the prefix string made of the first N chars of the string.
     Does that prefix string appear somewhere else in the string? Assume that the string is not empty
@@ -282,14 +284,17 @@ public class Main {
     prefixAgain("abXYabc", 1) → true
     prefixAgain("abXYabc", 2) → true
     prefixAgain("abXYabc", 3) → false
+    jennilalalalaidfjfkjdfjenni, 5
+    0123456789
 
      */
 
     public static boolean prefixAgain(String word, int characters) {
 
-        String prefixString = word.substring(0,characters);
+        String prefixString = word.substring(0,characters); // get prefix, based on characters and index
 
-        for (int i = characters; i <= word.length() - characters; i++) {
+        for (int i = characters; i <= word.length() - characters; i++) { // starting from suffix, up until end of word - input.
+            // this time used <= instead of characters - 1 like bobThere.  results are the same though.
             if (word.substring(i, i + characters).equals(prefixString)) {
                 return true;
             }
@@ -298,7 +303,7 @@ public class Main {
 
     }
 
-    /*(12) String-2: sameStarChar
+    /*(13) String-2: sameStarChar
 
     Returns true if for every '*' (star) in the string, if there are chars both immediately
     before and after the star, they are the same.
@@ -310,21 +315,27 @@ public class Main {
      */
 
     public static boolean sameStarChar(String input) {
-        List<Integer> starIndex = new ArrayList<>();
+        List<Integer> starIndex = new ArrayList<>(); // create an empty array list and holds integers
 
-        for (int i = 0; i < input.length(); i++) {
-            if (input.charAt(i) == '*')
-                starIndex.add(i);
+        for (int i = 1; i < input.length() - 1; i++) { // for every character in input, not the ends
+            if (input.charAt(i) == '*') // if character at index is a star
+                starIndex.add(i); // add that index to the array list
         }
 
-       for(int s : starIndex) {
-           if(input.charAt(s-1) == input.charAt(s+1)) {
+        if (starIndex.size() == 0) {
+            return true;
+        }
+        for (int s : starIndex) { // for index i've put in the array list
+            if (input.charAt(s - 1) == input.charAt(s + 1)) { // if the character before that index equals the character after that index return true
                 return true;
             }
-        } return false;
+        }
+        return false;
     }
 
-    /* (13) String-2: starOut TODO: need to figure this problem out.
+
+
+    /* (14) String-2: starOut TODO: need to figure this problem out.
 
     Return a version of the given string, where for every star (*) in the string the star and
     the chars immediately to its left and right are gone. So "ab*cd" yields "ad" and "ab**cd" also yields "ad".
@@ -352,7 +363,7 @@ public class Main {
 
 
 
-    /* (14) String-2 : countHi
+    /* (15) String-2 : countHi
 
 
     Return the number of times that the string "hi" appears anywhere in the given string.
@@ -375,7 +386,7 @@ public class Main {
 
     }
 
-    /* (15) String-2: endOther
+    /* (16) String-2: endOther
 
     Given two strings, return true if either of the strings appears at the very
     end of the other string, ignoring upper/lower case differences (in other words, the computation should
@@ -389,20 +400,20 @@ public class Main {
 
     public static boolean endOther(String wordA, String wordB) {
         String lowerCaseA = wordA.toLowerCase();
-        String lowerCaseB = wordB.toLowerCase();
+        String lowerCaseB = wordB.toLowerCase(); // first bring them all to lowercase
 
-        int lengthA = wordA.length();
+        int lengthA = wordA.length(); // find lengths
         int lengthB = wordB.length();
 
-        if (lengthA > lengthB) {
-            if (lowerCaseB.equals(lowerCaseA.substring((lengthA - lengthB), lengthA))) {
+        if (lengthA > lengthB) { // if length A is longer
+            if (lowerCaseB.equals(lowerCaseA.substring((lengthA - lengthB), lengthA))) { // if entire string of wordB is at the end of word A
                 return true;
             }
         } else if (lengthB > lengthA) {
             if (lowerCaseA.equals(lowerCaseB.substring((lengthB - lengthA), lengthB))) {
                 return true;
             }
-        } else if (lengthB == lengthA) {
+        } else if ((lengthB == lengthA) && (lowerCaseA == lowerCaseB)) { // if same word, then true
             return true;
         }
         return false;
@@ -473,12 +484,12 @@ public class Main {
 
         for (int i = 0; i < numbers.length; i++) {
             try {
-                if (numbers[i] != 13 && numbers[i - 1] != 13) {
-                    sum = sum + numbers[i];
+                if (numbers[i] != 13 && numbers[i - 1] != 13) {  // if number at index and number before index do not equal 13
+                    sum = sum + numbers[i]; // then add it to the sum
                 }
             } catch (Exception e) {
-                if (numbers[i] != 13) {
-                    sum = sum + numbers[i];
+                if (numbers[i] != 13) { // try and catch to fix exception of out of bounds for index.  if exception, that means it is the first number, if it is not 13
+                    sum = sum + numbers[i]; // add it to the sum
                 }
             }
         }
@@ -496,11 +507,11 @@ public class Main {
      */
 
     public static boolean lucky13(int[] numbers) {
-        boolean if13 = true;
+        boolean if13 = true; // set originally to true
 
         for (int i = 0; i < numbers.length; i++) {
-            if (numbers[i] == 1 || numbers[i] == 3) {
-                if13 = false;
+            if (Math.abs(numbers[i]) == 1 || Math.abs(numbers[i]) == 3) { //if any number is 1 or 3
+                if13 = false; // set it to false
             }
         }
         return if13;
@@ -509,8 +520,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println(luckySum(13, 1, 9));
-
+        System.out.println(sameStarChar("ldd*fkfd*"));
 
 
     }
